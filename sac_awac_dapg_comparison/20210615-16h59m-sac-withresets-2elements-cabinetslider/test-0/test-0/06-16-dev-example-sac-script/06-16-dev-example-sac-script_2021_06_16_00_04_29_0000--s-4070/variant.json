@@ -1,0 +1,45 @@
+{
+  "algorithm": "SAC",
+  "algorithm_kwargs": {
+    "batch_size": 256,
+    "max_path_length": 200,
+    "min_num_steps_before_training": 2000,
+    "num_epochs": 1000,
+    "num_eval_steps_per_epoch": 2000,
+    "num_expl_steps_per_train_loop": 2000,
+    "num_trains_per_train_loop": 2000
+  },
+  "demo_path": "demo_list_2elements_PLAYSTYLE_June14.pkl",
+  "env_id": "franka_cabinet_slider_resetfree_newcode-v1",
+  "env_kwargs": {
+    "attempt_limit": 50,
+    "eval_mode": false,
+    "graph_search": false,
+    "idx_completion": false,
+    "random_baseline": false,
+    "reset_frequency": 1
+  },
+  "eval_env_kwargs": {
+    "eval_mode": true,
+    "idx_completion": true
+  },
+  "exp_id": "0",
+  "exp_prefix": "06-16-dev-example-sac-script",
+  "instance_type": "None",
+  "job_name": "test-0",
+  "layer_size": 256,
+  "num_cpu": 1,
+  "output_dir": "/root/output/test-0",
+  "replay_buffer_size": 1000000,
+  "seed": "4070",
+  "trainer_kwargs": {
+    "discount": 0.99,
+    "policy_lr": 0.0003,
+    "qf_lr": 0.0003,
+    "reward_scale": 1,
+    "soft_target_tau": 0.005,
+    "target_update_period": 1,
+    "use_automatic_entropy_tuning": true
+  },
+  "version": "normal"
+}

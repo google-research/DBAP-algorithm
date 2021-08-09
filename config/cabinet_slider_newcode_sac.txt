@@ -1,0 +1,42 @@
+{
+    'job_name': 'test',
+    'algorithm': "SAC",
+    'version': "normal",
+    'layer_size': 256,
+    'replay_buffer_size': int(1E6),
+    'env_id': 'franka_cabinet_slider_resetfree_newcode-v1',
+    'algorithm_kwargs': {
+        'num_epochs': 1000,
+        'num_eval_steps_per_epoch': 2000,
+        'num_trains_per_train_loop': 2000,
+        'num_expl_steps_per_train_loop': 2000,
+        'min_num_steps_before_training': 2000,
+        'max_path_length': 200,
+        'batch_size': 256,
+    },
+    'trainer_kwargs': {
+        'discount': 0.99,
+        'soft_target_tau': 5e-3,
+        'target_update_period': 1,
+        'policy_lr': 3E-4,
+        'qf_lr': 3E-4,
+        'reward_scale': 1,
+        'use_automatic_entropy_tuning': True,
+    },
+    'env_kwargs': {
+        'eval_mode': False,
+        'attempt_limit': [50],
+        'reset_frequency': [1],
+        'idx_completion': False,
+        'graph_search': [False],
+        'random_baseline': [False],
+        #'learned_model': True,
+        #'learned_model_path': 'BC_model_2elems_window3.pkl',
+    },
+    'eval_env_kwargs': {
+        'eval_mode': True,
+        'idx_completion': True
+    },
+    'seed': [0,1,2],
+    'demo_path': 'demo_list_2elements_PLAYSTYLE_June14.pkl'
+}

@@ -1,0 +1,151 @@
+{
+  "add_env_demos": false,
+  "add_env_offpolicy_data": false,
+  "algorithm": "AWAC",
+  "batch_size": 1024,
+  "collection_mode": "batch",
+  "env_id": "franka_cabinet_slider_resetfree_newcode-v1",
+  "env_kwargs": {
+    "attempt_limit": 50,
+    "eval_mode": false,
+    "graph_search": true,
+    "idx_completion": false,
+    "random_baseline": false,
+    "reset_controller": false,
+    "reset_frequency": 10
+  },
+  "eval_env_kwargs": {
+    "eval_mode": true,
+    "graph_search": true,
+    "idx_completion": true,
+    "random_baseline": false,
+    "reset_controller": false
+  },
+  "exp_id": "0",
+  "exp_prefix": "06-16-dev-example-awac-script",
+  "expl_eval_same": false,
+  "instance_type": "None",
+  "job_name": "test-0",
+  "layer_size": 256,
+  "load_demos": false,
+  "max_path_length": 200,
+  "min_num_steps_before_training": 2000,
+  "num_cpu": 1,
+  "num_epochs": 1001,
+  "num_eval_steps_per_epoch": 2000,
+  "num_expl_steps_per_train_loop": 2000,
+  "num_layers": 2,
+  "num_trains_per_train_loop": 2000,
+  "output_dir": "/root/output/test-0",
+  "path_loader_class": {
+    "$class": "rlkit.demos.source.dict_to_mdp_path_loader.DictToMDPPathLoader"
+  },
+  "path_loader_kwargs": {
+    "demo_paths": [
+      {
+        "is_demo": true,
+        "obs_dict": false,
+        "path": "paths_02_PLAYSTYLE_June14.pkl",
+        "train_split": 0.95
+      },
+      {
+        "is_demo": true,
+        "obs_dict": false,
+        "path": "paths_01_PLAYSTYLE_June14.pkl",
+        "train_split": 0.95
+      },
+      {
+        "is_demo": true,
+        "obs_dict": false,
+        "path": "paths_10_PLAYSTYLE_June14.pkl",
+        "train_split": 0.95
+      },
+      {
+        "is_demo": true,
+        "obs_dict": false,
+        "path": "paths_13_PLAYSTYLE_June14.pkl",
+        "train_split": 0.95
+      },
+      {
+        "is_demo": true,
+        "obs_dict": false,
+        "path": "paths_20_PLAYSTYLE_June14.pkl",
+        "train_split": 0.95
+      },
+      {
+        "is_demo": true,
+        "obs_dict": false,
+        "path": "paths_23_PLAYSTYLE_June14.pkl",
+        "train_split": 0.95
+      },
+      {
+        "is_demo": true,
+        "obs_dict": false,
+        "path": "paths_32_PLAYSTYLE_June14.pkl",
+        "train_split": 0.95
+      },
+      {
+        "is_demo": true,
+        "obs_dict": false,
+        "path": "paths_31_PLAYSTYLE_June14.pkl",
+        "train_split": 0.95
+      }
+    ]
+  },
+  "policy_class": {
+    "$class": "rlkit.torch.sac.policies.gaussian_policy.GaussianPolicy"
+  },
+  "policy_kwargs": {
+    "hidden_sizes": [
+      256,
+      256
+    ],
+    "max_log_std": 0,
+    "min_log_std": -4,
+    "std_architecture": "values"
+  },
+  "pretrain_policy": false,
+  "pretrain_rl": false,
+  "qf_kwargs": {
+    "hidden_sizes": [
+      256,
+      256
+    ]
+  },
+  "random_goal": false,
+  "render_eval": false,
+  "render_expl": false,
+  "replay_buffer_size": 1000000,
+  "save_pretrained_algorithm": true,
+  "seed": "4794",
+  "std_bump": 0.0,
+  "train_rl": true,
+  "trainer_kwargs": {
+    "alpha": 0,
+    "awr_min_q": true,
+    "awr_sample_actions": false,
+    "awr_use_mle_for_vf": false,
+    "awr_weight": 1.0,
+    "bc_num_pretrain_steps": 0,
+    "bc_weight": 0.0,
+    "beta": 50.0,
+    "buffer_policy_sample_actions": false,
+    "compute_bc": false,
+    "discount": 0.99,
+    "hindsight_relabel": false,
+    "policy_lr": 0.0003,
+    "policy_weight_decay": 1e-06,
+    "q_num_pretrain1_steps": 0,
+    "q_num_pretrain2_steps": 0,
+    "qf_lr": 0.0003,
+    "reparam_weight": 0.0,
+    "reward_scale": 1,
+    "soft_target_tau": 0.005,
+    "stride_goal": 10,
+    "target_update_period": 1,
+    "train_bc_on_rl_buffer": false,
+    "use_automatic_entropy_tuning": false
+  },
+  "use_validation_buffer": true,
+  "version": "normal"
+}

@@ -1,0 +1,83 @@
+# ACE Project file for MJRL
+#
+# To train locally:
+# ace run train -c config/train.txt
+#
+# To train locally in Docker:
+# ace run-docker train -c config/train_dclaw_track.txt
+#
+# To train on GCE:
+# ace run-cloud train -c config/train_dclaw_track.txt
+#
+# Replace `train` with `train-hardware` to train on robot.
+# e.g.
+# ace run train-hardware -c config/train_dclaw_track.txt -- --device /dev/dclaw1
+
+project_name: mjrl
+
+commands:
+- name: train
+  command: python utils/job_script_mjrl.py -c {config} -o {output}
+  args:
+  - name: output
+    type: output-directory
+  - name: config
+    type: job-generator
+
+- name: train-hardware
+  command: python utils/job_script_mjrl.py -c {config} -o {output} --hardware --legacy
+  profile: hardware
+  args:
+  - name: output
+    type: output-directory
+  - name: config
+    type: job-generator
+
+- name: bash
+  command: bash
+
+- name: eval
+  command: python policies/examine_policy.py
+
+- name: eval-hardware
+  command: python policies/examine_policy.py --hardware --legacy
+  profile: hardware
+
+dependencies:
+  filesystem:
+  - path: ../utils
+
+  - path: ../../adept_envs
+    add_to_env: PYTHONPATH
+
+  - path: ../../adept_models
+
+  - path: ../../xml2envs
+    add_to_env: PYTHONPATH
+    optional: True
+
+  # NOTE: Change this to point to a local checkout of the MJRL repo:
+  # https://github.com/aravindr93/mjrl
+  - path: ../../mjrl
+    add_to_env: PYTHONPATH
+
+  conda_env: conda_envs/cpu.yml
+
+  mujoco:
+    version: [150, 200]
+    key: ~/.mujoco/mjkcoey.txt
+
+  apt:
+  # For mujoco_py
+  - libosmesa6-dev
+  - libgl1-mesa-devujo
+
+  env_variables:
+  # For mujoco_py
+  - name: LD_LIBRARY_PATH
+    value: $HOME/.mujoco/mjpro150/bin:$HOME/.mujoco/m/bin:$LD_LIBRARY_PATH
+    in_build: True
+
+  cloud:
+    cpu: 16
+
